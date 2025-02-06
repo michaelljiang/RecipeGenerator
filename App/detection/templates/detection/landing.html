@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+    Upload Page
+{% endblock%}
+
+{% block stylesheets %} 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  
+{% endblock%}
+
+{% block content %}
+    <div class = "form_container">
+        <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %}
+
+            <input type="file" id = "image_input" name= "image" accept="image/*" style = "display: none;">
+
+            <label for="image_input">
+                <img src="{% static 'upload.png' %}" class="upload" id = "uploadIcon" alt="Upload Icon" />
+            </label>
+
+            <img id = "imagePreview" class= "preview" src="#" alt = "Image Preview"  />
+
+            <div class = "submit_button">
+                <button type="submit">Detect</button>
+            </div>
+        </form>
+    </div>
+
+    <p> {{labels}} </p>
+
+    <div class = "recipe_list">
+        {% for recipe in recipes %}
+            <div class = "recipe_box">
+
+                <button class = "recipe_toggle">{{ recipe.title }}</button>
+                
+
+                <div class = "recipe_contents" style="display: none;">
+
+                    <div class = "recipe_ingredients">
+
+                        <p><strong>Ingredients:</strong></p>
+                        <ul>
+                            {% for ingredient in recipe.ingredient_name %}
+                                <p> {{ingredient}} </p>
+                            {% endfor %}
+                        </ul> 
+
+                    </div>
+
+                    <div class = "recipe_instructions">
+
+                        <p><strong>Instructions:</strong></p>
+                        <ul>
+                            {% for instruction in recipe.instructions %}
+                                <p> PlaceHolder Instructions </p>
+                            {% endfor %}
+                        </ul>
+
+                    </div> 
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/img.js' %}"></script>
+{% endblock %}
