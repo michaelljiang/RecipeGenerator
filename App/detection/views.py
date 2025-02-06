@@ -50,10 +50,10 @@ def post_process(outputs):
         Returns:
             list: The detected labels
     """
-    # Lists to store detected labels
-    labels = []
+    # Sets to store detected labels
+    labels = set()
 
-    #Transpose and squeeze inference output in order extract labels
+    # Transpose and squeeze inference output in order extract labels
     outputs = np.transpose(np.squeeze(outputs[0]))
 
     # Number of rows (# of possible labels)
@@ -74,11 +74,11 @@ def post_process(outputs):
             # Get index of max confidence
             label_index = np.argmax(label_confidences)
 
-            # Index into model_labels to find label and append into list
-            labels.append(model_labels[label_index])
+            # Index into model_labels to find label and add to set
+            labels.add(model_labels[label_index])
 
     # return list of labels
-    return labels
+    return list(labels)
 
 
 
