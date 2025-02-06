@@ -102,8 +102,8 @@ button[type="submit"]{
 .recipe_toggle{
     padding: 10px 20px; 
     border-radius: 5px;
-    background-color: #7D938A;
-    color: white;
+    background-color: white;
+    color: black;
     font-size: 16px;
     cursor:pointer;
     font-family: "Montserrat", sans-serif;

@@ -23,49 +23,42 @@
 
             <img id = "imagePreview" class= "preview" src="#" alt = "Image Preview"  />
 
-            <div class = "submit_button">
+            <div class = "submit_button" style="margin-bottom: 20px;">
                 <button type="submit">Detect</button>
             </div>
         </form>
     </div>
+    <p style="background-color: lightgreen; padding: 10px; border-radius: 5px; color: black; text-align: center; width: fit-content; margin: 0 auto; margin-bottom: 20px;">{{ labels }}</p>
 
-    <p> {{labels}} </p>
-
-    <div class = "recipe_list">
+    <div class="recipe_list" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
         {% for recipe in recipes %}
-            <div class = "recipe_box">
+            <div class="recipe_box" style="width: 90%; max-width: 600px; border: 1px solid #ccc; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); background-color: white; color: black;">
 
-                <button class = "recipe_toggle">{{ recipe.title }}</button>
-                
+                <button class="recipe_toggle" style="width: 100%; text-align: left; background-color: white; border: none; padding: 10px; font-size: 16px; cursor: pointer; color: black; font-weight: bold;">{{ recipe.title }}</button>
 
-                <div class = "recipe_contents" style="display: none;">
+                <div class="recipe_contents" style="display: none; padding: 10px; background-color: white; color: black;">
 
-                    <div class = "recipe_ingredients">
-
+                    <div class="recipe_ingredients" style="margin-bottom: 10px;">
                         <p><strong>Ingredients:</strong></p>
                         <ul>
                             {% for ingredient in recipe.ingredient_name %}
-                                <p> {{ingredient}} </p>
+                                <li>{{ ingredient }}</li>
                             {% endfor %}
-                        </ul> 
-
+                        </ul>
                     </div>
 
-                    <div class = "recipe_instructions">
-
+                    <div class="recipe_instructions">
                         <p><strong>Instructions:</strong></p>
                         <ul>
                             {% for instruction in recipe.instructions %}
-                                <p> PlaceHolder Instructions </p>
+                                <li>{{ instruction }}</li>
                             {% endfor %}
                         </ul>
-
-                    </div> 
+                    </div>
 
                 </div>
 
             </div>
-
         {% endfor %}
     </div>
     <script src="{% static 'js/img.js' %}"></script>
